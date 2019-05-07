@@ -1,7 +1,7 @@
 <template>
   <div class="game-control">
+    <GameDisplay :attempt="attempt"></GameDisplay>
     <GameControlDigits @selected="onSelected"></GameControlDigits>
-    <GameControlDisplay :attempt="attempt"></GameControlDisplay>
     <GameControlButtons
       :enabled="validAttempt"
       @try="onTry()"
@@ -12,14 +12,14 @@
 
 <script>
 import { mapActions } from 'vuex';
+import GameDisplay from '../GameDisplay.vue';
 import GameControlDigits from './GameControlDigits.vue';
-import GameControlDisplay from './GameControlDisplay.vue';
 import GameControlButtons from './GameControlButtons.vue';
 
 export default {
   components: {
     GameControlDigits,
-    GameControlDisplay,
+    GameDisplay,
     GameControlButtons,
   },
   data() {
@@ -30,7 +30,7 @@ export default {
   computed: {
     validAttempt() {
       return this.attempt.length === 3;
-    }
+    },
   },
   methods: {
     ...mapActions([
@@ -58,8 +58,9 @@ export default {
   .game-control {
     display: flex;
     align-items: center;
+    padding: 0 15px;
 
-    &-display {
+    &-digits {
       margin-left: auto;
     }
 

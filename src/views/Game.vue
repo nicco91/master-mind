@@ -3,6 +3,7 @@
     <GameToolbar></GameToolbar>
     <div class="container">
       <GameControl></GameControl>
+      <h1 class="attempts-title title is-5">Attempts</h1>
       <GameAttemptList></GameAttemptList>
     </div>
   </div>
@@ -45,8 +46,26 @@ export default {
     height: 100%;
     width: 100%;
 
-    &-attempt-list {
-      margin-top: 3rem;
+    .container {
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100% - 85px);
+      overflow: hidden;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+
+      .game-control {
+        flex: 0 0 auto;
+      }
+
+      .attempts-title {
+        margin: 2rem 15px 1rem;
+      }
+
+      .game-attempt-list {
+        flex: 1 1 auto;
+        overflow-y: scroll;
+      }
     }
   }
 </style>

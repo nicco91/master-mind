@@ -1,18 +1,23 @@
 <template>
-  <div class="game-control-digits buttons has-addons">
-    <span
-      class="button"
+  <div class="game-control-digits">
+    <div
+      class="game-control-digits__ball"
       v-for="control in 10"
       :key="control"
       @click="onSelect(control - 1)"
     >
-      {{ control - 1 }}
-    </span>
+      <Ball :value="control - 1"></Ball>
+    </div>
   </div>
 </template>
 
 <script>
+import Ball from '@/components/ui/Ball.vue';
+
 export default {
+  components: {
+    Ball,
+  },
   methods: {
     onSelect(value) {
       this.$emit('selected', value);
@@ -23,11 +28,12 @@ export default {
 
 <style lang="scss" scoped>
 .game-control-digits {
-  &.buttons {
-    margin-bottom: 0;
+  &__ball {
+    display: inline-block;
+    cursor: pointer;
 
-    .button {
-      margin-bottom: 0;
+    &:not(:last-child) {
+      margin-right: 1rem;
     }
   }
 }

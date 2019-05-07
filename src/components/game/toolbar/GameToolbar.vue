@@ -1,13 +1,17 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar is-spaced">
     <div class="container">
-      <div class="navbar-brand">
-        <span class="title is-4">{{ username }}</span>
+      <div class="navbar-start">
+        <div class="navbar-item">
+          <span class="title is-4">Player: {{ username }}</span>
+        </div>
       </div>
       <div class="navbar-end">
-        <button type="button" class="button is-danger" @click="onSurrend()">
-          Surrend
-        </button>
+        <div class="navbar-item">
+          <button type="button" class="button is-danger" @click="onSurrend()">
+            Surrend
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -30,6 +34,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '~bulma/sass/utilities/_all.sass';
 
+.navbar {
+  border-bottom: 1px solid $grey-lighter;
+}
 </style>

@@ -1,20 +1,29 @@
 <template>
   <div class="game-attempt-result">
-    <div
-      class="game-attempt-result__item game-attempt-result__item--black"
+    <Pin
       v-for="(result, index) in rightPlace"
       :key="`black-${index}`"
-    ></div>
-    <div
-      class="game-attempt-result__item game-attempt-result__item--white"
+      :value="true"
+    ></Pin>
+    <Pin
       v-for="(result, index) in wrongPlace"
       :key="`white-${index}`"
-    ></div>
+      :value="false"
+    ></Pin>
+    <Pin
+      v-for="(_, index) in paddingLength"
+      :key="`null-${index}`"
+    ></Pin>
   </div>
 </template>
 
 <script>
+import Pin from '@/components/ui/Pin.vue';
+
 export default {
+  components: {
+    Pin,
+  },
   props: {
     rightPlace: {
       type: Number,
@@ -25,38 +34,20 @@ export default {
       required: true,
     },
   },
+  computed: {
+    paddingLength() {
+      return 3 - this.wrongPlace - this.rightPlace;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.game-attempt-result {
-  &__item {
-    display: inline-block;
-    position: relative;
 
+.game-attempt-result {
+  .pin {
     &:not(:last-child) {
       margin-right: 1rem;
-    }
-
-    &::after {
-      content: '';
-      display: block;
-      border-radius: 100%;
-      width: 1rem;
-      height: 1rem;
-    }
-
-    &--black {
-      &::after {
-        background-color: #000;
-      }
-    }
-
-    &--white {
-      &::after {
-        background-color: #fff;
-        border: 2px solid #000;
-      }
     }
   }
 }

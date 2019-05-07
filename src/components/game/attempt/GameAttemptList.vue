@@ -1,8 +1,7 @@
 <template>
   <div class="game-attempt-list">
-    <h1 class="game-attempt-list__title title is-5">Attempts</h1>
     <GameAttemptItem
-      v-for="(attempt, index) in attempts"
+      v-for="(attempt, index) in sortedAttempts"
       :key="index"
       :attempt="attempt"
     ></GameAttemptItem>
@@ -19,7 +18,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'attempts',
+      'sortedAttempts',
     ]),
   },
 };

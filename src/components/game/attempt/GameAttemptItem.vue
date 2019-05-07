@@ -1,14 +1,8 @@
 <template>
   <div class="game-attempt-item">
-    <div class="title is-5">
-      <span
-        class="game-attempt-item__digit"
-        v-for="(digit, index) in attempt.attempt"
-        :key="index"
-      >
-        {{ digit }}
-      </span>
-    </div>
+    <GameDisplay
+      :attempt="attempt.attempt"
+    ></GameDisplay>
     <GameAttemptResult
       :rightPlace="attempt.rightPlace"
       :wrongPlace="attempt.wrongPlace"
@@ -17,10 +11,12 @@
 </template>
 
 <script>
+import GameDisplay from '../GameDisplay.vue';
 import GameAttemptResult from './GameAttemptResult.vue';
 
 export default {
   components: {
+    GameDisplay,
     GameAttemptResult,
   },
   props: {
@@ -35,6 +31,9 @@ export default {
 <style lang="scss" scoped>
 .game-attempt-item {
   display: flex;
+  padding: .75rem 15px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
 
   .game-attempt-result {
     margin-left: auto;

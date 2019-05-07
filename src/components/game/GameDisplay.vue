@@ -1,24 +1,24 @@
 <template>
-  <div class="game-control-display title">
-    <span
-      class="game-control-display__digit"
+  <div class="game-display">
+    <Ball
       v-for="(digit, index) in attempt"
       :key="`digit-${index}`"
-    >
-      {{ digit }}
-    </span>
-    <span
-      class="game-control-display__digit"
+      :value="digit"
+    ></Ball>
+    <Ball
       v-for="(pad, index) in paddingLength"
       :key="`pad-${index}`"
-    >
-      {{ paddingDigit }}
-    </span>
+    ></Ball>
   </div>
 </template>
 
 <script>
+import Ball from '@/components/ui/Ball.vue';
+
 export default {
+  components: {
+    Ball,
+  },
   props: {
     attempt: {
       type: Array,
@@ -39,14 +39,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.game-control-display {
-  &.title {
-    margin-bottom: 0;
-  }
+.game-display {
+  display: flex;
 
-  &__digit {
+  .ball {
     &:not(:first-child) {
-      margin-left: 1rem;
+      margin-left: .5rem;
     }
   }
 }
