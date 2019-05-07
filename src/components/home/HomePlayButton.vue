@@ -19,11 +19,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'username',
+      'invalidUsername',
     ]),
-    invalidUsername() {
-      return this.username == null || this.username === '';
-    },
   },
   methods: {
     onPlay() {

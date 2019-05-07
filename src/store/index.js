@@ -8,6 +8,9 @@ import * as mutations from './mutations';
 const state = {
   username: '',
   points: 0,
+  match: null,
+  attempts: [],
+  winner: false,
 };
 
 Vue.use(Vuex);

@@ -5,7 +5,7 @@
         type="text"
         class="username-input input is-large"
         placeholder="Insert username..."
-        @keypress="onChange"
+        @keyup="onChange"
       >
     </div>
   </div>
@@ -16,9 +16,7 @@ import { mapActions } from 'vuex';
 
 export default {
   methods: {
-    ...mapActions([
-      'setUsername'
-    ]),
+    ...mapActions(['setUsername']),
     onChange(event) {
       this.setUsername(event.target.value);
     },
