@@ -18,7 +18,7 @@ export default {
     HomeUsernameInput,
   },
   methods: {
-    ...mapActions([
+    ...mapActions('game', [
       'resetMatch',
     ]),
   },

@@ -2,7 +2,7 @@
   <div class="game-control-buttons buttons has-addons">
     <button
       type="button"
-      class="game-control-try button is-link"
+      class="game-control-try button is-primary"
       @click="onTry()"
       :disabled="!enabled"
     >

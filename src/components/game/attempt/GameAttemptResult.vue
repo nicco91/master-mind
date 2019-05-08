@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Pin from '@/components/ui/Pin.vue';
 
 export default {
@@ -35,8 +36,11 @@ export default {
     },
   },
   computed: {
+    ...mapGetters('config', [
+      'secretLength',
+    ]),
     paddingLength() {
-      return 3 - this.wrongPlace - this.rightPlace;
+      return this.secretLength - this.wrongPlace - this.rightPlace;
     },
   },
 };

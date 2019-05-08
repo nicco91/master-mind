@@ -26,12 +26,12 @@ export default {
     GameToolbarPlayer,
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('game', [
       'username',
     ]),
   },
   methods: {
-    ...mapActions([
+    ...mapActions('game', [
       'surrend',
     ]),
     onSurrend() {

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import GameDisplay from '../GameDisplay.vue';
 import GameControlDigits from './GameControlDigits.vue';
 import GameControlButtons from './GameControlButtons.vue';
@@ -36,16 +36,19 @@ export default {
     };
   },
   computed: {
+    ...mapGetters('config', [
+      'secretLength',
+    ]),
     validAttempt() {
-      return this.attempt.length === 3;
+      return this.attempt.length === this.secretLength;
     },
   },
   methods: {
-    ...mapActions([
+    ...mapActions('game', [
       'tryAttempt',
     ]),
     onSelected(value) {
-      if (this.attempt.length < 3) {
+      if (this.attempt.length < this.secretLength) {
         this.attempt.push(value);
       }
     },

@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="play-button button is-large"
+    class="play-button button is-primary is-large"
     :disabled="invalidUsername"
     @click="onPlay()"
   >Play</button>
@@ -18,12 +18,12 @@ export default {
     },
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('game', [
       'invalidUsername',
     ]),
   },
   methods: {
-    ...mapActions([
+    ...mapActions('game', [
       'generateMatch',
     ]),
     onPlay() {

@@ -23,7 +23,7 @@ export default {
     GameAttemptItem,
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('game', [
       'sortedAttempts',
     ]),
   },

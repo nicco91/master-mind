@@ -39,7 +39,7 @@ export default {
     GameDisplay,
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('game', [
       'winner',
       'surrender',
       'attempts',

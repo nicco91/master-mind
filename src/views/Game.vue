@@ -25,7 +25,7 @@ export default {
     GameEnded,
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('game', [
       'invalidUsername',
       'match',
     ]),

@@ -18,12 +18,12 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters([
+    ...mapGetters('game', [
       'username',
     ]),
   },
   methods: {
-    ...mapActions([
+    ...mapActions('game', [
       'setUsername',
     ]),
     onChange(event) {

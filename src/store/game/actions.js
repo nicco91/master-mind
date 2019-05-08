@@ -11,9 +11,10 @@ export const generateMatch = ({ commit }) => {
   commit('initMatch', match);
 };
 
-export const tryAttempt = ({ commit, state }, attempt) => {
-  const checkMatch = [true, true, true];
-  const checkAttempt = [true, true, true];
+export const tryAttempt = ({ commit, state, rootState }, attempt) => {
+  const { secretLength } = rootState.config;
+  const checkMatch = (new Array(secretLength)).map(() => true);
+  const checkAttempt = (new Array(secretLength)).map(() => true);
   // count right numbers in right place
   const rightPlace = attempt.reduce((acc, digit, index) => {
     let increment = 0;
@@ -28,7 +29,7 @@ export const tryAttempt = ({ commit, state }, attempt) => {
   const wrongPlace = attempt.reduce((acc, attemptDigit, i) => {
     let j = 0;
     let increment = 0;
-    while (j < 3 && checkAttempt[i]) {
+    while (j < secretLength && checkAttempt[i]) {
       if (checkMatch[j] && state.match[j] === attemptDigit) {
         increment += 1;
         checkMatch[j] = false;
@@ -41,7 +42,7 @@ export const tryAttempt = ({ commit, state }, attempt) => {
 
   commit('addAttempt', { attempt, rightPlace, wrongPlace });
 
-  if (rightPlace === 3) {
+  if (rightPlace === secretLength) {
     commit('setWinner');
   }
 };

@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Ball from '@/components/ui/Ball.vue';
 
 export default {
@@ -41,8 +42,11 @@ export default {
     };
   },
   computed: {
+    ...mapGetters('config', [
+      'secretLength',
+    ]),
     paddingLength() {
-      return 3 - this.attempt.length;
+      return this.secretLength - this.attempt.length;
     },
   },
   methods: {
