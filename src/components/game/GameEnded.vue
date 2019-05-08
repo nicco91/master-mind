@@ -14,6 +14,10 @@
         </span>
         <strong>{{ attemptsCount }} attempt(s)</strong>.
       </p>
+      <div class="game-ended__secret-code" v-if="surrender">
+        <p>Here is your secret code:</p>
+        <GameDisplay :attempt="match"></GameDisplay>
+      </div>
       <button
         class="game-ended__button button is-large"
         @click="onBack()"
@@ -27,16 +31,19 @@
 <script>
 import { mapGetters } from 'vuex';
 import Modal from '@/components/ui/Modal.vue';
+import GameDisplay from './GameDisplay.vue'
 
 export default {
   components: {
     Modal,
+    GameDisplay,
   },
   computed: {
     ...mapGetters([
       'winner',
       'surrender',
       'attempts',
+      'match',
     ]),
     typeClass() {
       return `game-ended--${this.winner ? 'winner' : 'surrender'}`;
@@ -84,6 +91,18 @@ export default {
 
   &__button {
     margin-bottom: 16px;
+  }
+
+  &__secret-code {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+
+    > p {
+      margin-bottom: 16px;
+    }
   }
 }
 </style>
