@@ -46,6 +46,10 @@ export const tryAttempt = ({ commit, state }, attempt) => {
   }
 };
 
+export const surrend = ({ commit }) => {
+  commit('setSurrender');
+};
+
 export const resetMatch = ({ commit }) => {
   commit('resetMatch');
 };

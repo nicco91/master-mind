@@ -6,7 +6,7 @@
       <h1 class="attempts-title title is-5">Attempts</h1>
       <GameAttemptList></GameAttemptList>
     </div>
-    <GameWinner></GameWinner>
+    <GameEnded></GameEnded>
   </div>
 </template>
 
@@ -15,14 +15,14 @@ import { mapGetters } from 'vuex';
 import GameToolbar from '@/components/game/toolbar/GameToolbar.vue';
 import GameControl from '@/components/game/control/GameControl.vue';
 import GameAttemptList from '@/components/game/attempt/GameAttemptList.vue';
-import GameWinner from '@/components/game/GameWinner.vue';
+import GameEnded from '@/components/game/GameEnded.vue';
 
 export default {
   components: {
     GameToolbar,
     GameControl,
     GameAttemptList,
-    GameWinner,
+    GameEnded,
   },
   computed: {
     ...mapGetters([

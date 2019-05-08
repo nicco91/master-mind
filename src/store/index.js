@@ -11,6 +11,7 @@ const state = {
   match: null,
   attempts: [],
   winner: false,
+  surrender: false,
 };
 
 Vue.use(Vuex);

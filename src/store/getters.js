@@ -5,3 +5,4 @@ export const match = state => state.match;
 export const attempts = state => state.attempts;
 export const sortedAttempts = state => [...state.attempts].reverse();
 export const winner = state => state.winner;
+export const surrender = state => state.surrender;
