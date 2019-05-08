@@ -5,7 +5,7 @@
       enter-active-class="animated fadeIn"
       leave-active-class="animated fadeOut"
     >
-      <div class="modal-background" v-if="show"></div>
+      <div class="modal-background" v-if="show" @click="onClose()"></div>
     </transition>
 
     <transition
@@ -14,15 +14,24 @@
       leave-active-class="animated zoomOut"
     >
       <div class="modal-content" v-if="show">
-        <slot></slot>
+        <div class="box">
+          <slot></slot>
+        </div>
       </div>
     </transition>
 
-    <button
-      class="modal-close is-large"
-      aria-label="close"
-      v-if="!preventClose"
-    ></button>
+    <transition
+      name="modal-button-transition"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <button
+        class="modal-close is-large"
+        aria-label="close"
+        v-if="!preventClose"
+        @click="onClose()"
+      ></button>
+    </transition>
   </div>
 </template>
 
@@ -38,15 +47,25 @@ export default {
       default: false,
     },
   },
-  computed: {
-    activeClass() {
-      return this.show ? 'is-active' : '';
+  data() {
+    return {
+      activeClass: '',
+    };
+  },
+  methods: {
+    onClose() {
+      if (!this.preventClose) {
+        this.$emit('close');
+      }
     },
-    bgAnimationClass() {
-      return this.show ? 'fadeIn' : 'fadeOut';
-    },
-    contentAnimationClass() {
-      return this.show ? 'zoomIn' : 'zoomOut';
+  },
+  watch: {
+    show(newShow) {
+      if (newShow) {
+        this.activeClass = 'is-active';
+      } else {
+        setTimeout(() => { this.activeClass = ''; }, 350);
+      }
     },
   },
 };

@@ -3,14 +3,12 @@
     <div class="container">
       <div class="navbar-start">
         <div class="navbar-item">
-          <span class="title is-4">Player: {{ username }}</span>
+          <GameToolbarPlayer :username="username"></GameToolbarPlayer>
         </div>
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <button type="button" class="button is-danger" @click="onSurrend()">
-            Surrend
-          </button>
+          <GameToolbarSurrend @surrend="onSurrend()"></GameToolbarSurrend>
         </div>
       </div>
     </div>
@@ -19,8 +17,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import GameToolbarSurrend from './GameToolbarSurrend.vue';
+import GameToolbarPlayer from './GameToolbarPlayer.vue';
 
 export default {
+  components: {
+    GameToolbarSurrend,
+    GameToolbarPlayer,
+  },
   computed: {
     ...mapGetters([
       'username',

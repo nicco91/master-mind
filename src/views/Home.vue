@@ -45,6 +45,7 @@ export default {
 
   &__title {
     margin-top: 16px;
+    margin-bottom: 3rem;
     font-family: 'Bungee Shade', sans-serif;
     font-size: 3rem;
     animation: colors infinite 20s;

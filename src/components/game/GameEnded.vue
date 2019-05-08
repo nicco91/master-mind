@@ -1,6 +1,6 @@
 <template>
   <Modal :show="winner || surrender" :preventClose="true">
-    <div :class="`game-ended ${typeClass} box`">
+    <div :class="`game-ended ${typeClass}`">
       <div :class="`game-ended__icon animated ${animationClass}`"></div>
       <h1 class="game-ended__title title is-1">
         You {{ winner ? 'won' : 'surrended' }}!
@@ -31,7 +31,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import Modal from '@/components/ui/Modal.vue';
-import GameDisplay from './GameDisplay.vue'
+import GameDisplay from './GameDisplay.vue';
 
 export default {
   components: {
