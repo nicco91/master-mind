@@ -5,11 +5,11 @@
       :hoverable="true"
       @clicked="onRemove"
     ></GameDisplay>
-    
+
     <GameControlDigits
       @selected="onSelected"
     ></GameControlDigits>
-    
+
     <GameControlButtons
       :enabled="validAttempt"
       @try="onTry()"

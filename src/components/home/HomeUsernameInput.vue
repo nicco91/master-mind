@@ -1,10 +1,11 @@
 <template>
-  <div class="field">
+  <div class="home-username field">
     <div class="control">
       <input
         type="text"
-        class="username-input input is-large"
-        placeholder="Insert username..."
+        class="home-username__input input is-large"
+        placeholder="Insert player name..."
+        ref="playerName"
         :value="username"
         @keyup="onChange"
       >
@@ -29,8 +30,16 @@ export default {
       this.setUsername(event.target.value);
     },
   },
+  mounted() {
+    this.$refs.playerName.focus();
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.home-username {
+  &__input {
+    text-align: center;
+  }
+}
 </style>

@@ -19,3 +19,10 @@ export const addAttempt = (state, attempt) => {
 export const setWinner = (state) => {
   state.winner = true;
 };
+
+export const resetMatch = (state) => {
+  state.match = null;
+  state.points = 0;
+  state.attempts = [];
+  state.winner = false;
+};

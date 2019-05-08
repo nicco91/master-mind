@@ -45,3 +45,7 @@ export const tryAttempt = ({ commit, state }, attempt) => {
     commit('setWinner');
   }
 };
+
+export const resetMatch = ({ commit }) => {
+  commit('resetMatch');
+};
