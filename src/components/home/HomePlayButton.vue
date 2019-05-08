@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   props: {
@@ -23,7 +23,11 @@ export default {
     ]),
   },
   methods: {
+    ...mapActions([
+      'generateMatch',
+    ]),
     onPlay() {
+      this.generateMatch();
       this.$router.push('play');
     },
   },

@@ -20,6 +20,15 @@ export default {
       return 'empty';
     },
   },
+  title() {
+    if (this.value === true) {
+      return 'Right number in right position';
+    }
+    if (this.value === false) {
+      return 'Right number in wrong position';
+    }
+    return '';
+  },
 };
 </script>
 

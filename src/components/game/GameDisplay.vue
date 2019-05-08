@@ -1,14 +1,20 @@
 <template>
   <div class="game-display">
-    <Ball
+    <div
+      class="game-display__digit"
       v-for="(digit, index) in attempt"
       :key="`digit-${index}`"
-      :value="digit"
-    ></Ball>
-    <Ball
+      @click="onClick(index)"
+    >
+      <Ball :value="digit" :hoverable="hoverable"></Ball>
+    </div>
+    <div
+      class="game-display__pad"
       v-for="(pad, index) in paddingLength"
       :key="`pad-${index}`"
-    ></Ball>
+    >
+      <Ball></Ball>
+    </div>
   </div>
 </template>
 
@@ -24,6 +30,10 @@ export default {
       type: Array,
       required: true,
     },
+    hoverable: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -35,6 +45,11 @@ export default {
       return 3 - this.attempt.length;
     },
   },
+  methods: {
+    onClick(index) {
+      this.$emit('clicked', index);
+    },
+  },
 };
 </script>
 
@@ -42,7 +57,8 @@ export default {
 .game-display {
   display: flex;
 
-  .ball {
+  &__digit,
+  &__pad {
     &:not(:first-child) {
       margin-left: .5rem;
     }

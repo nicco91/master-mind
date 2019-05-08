@@ -6,7 +6,7 @@
       :key="control"
       @click="onSelect(control - 1)"
     >
-      <Ball :value="control - 1"></Ball>
+      <Ball :value="control - 1" :hoverable="true"></Ball>
     </div>
   </div>
 </template>
@@ -30,7 +30,6 @@ export default {
 .game-control-digits {
   &__ball {
     display: inline-block;
-    cursor: pointer;
 
     &:not(:last-child) {
       margin-right: 1rem;

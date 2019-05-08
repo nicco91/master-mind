@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import GameToolbar from '@/components/game/toolbar/GameToolbar.vue';
 import GameControl from '@/components/game/control/GameControl.vue';
 import GameAttemptList from '@/components/game/attempt/GameAttemptList.vue';
@@ -24,18 +24,12 @@ export default {
   computed: {
     ...mapGetters([
       'invalidUsername',
-    ]),
-  },
-  methods: {
-    ...mapActions([
-      'generateMatch',
+      'match',
     ]),
   },
   mounted() {
-    if (this.invalidUsername) {
+    if (this.invalidUsername || this.match == null) {
       this.$router.push('/');
-    } else {
-      this.generateMatch();
     }
   },
 };
@@ -64,7 +58,7 @@ export default {
 
       .game-attempt-list {
         flex: 1 1 auto;
-        overflow-y: scroll;
+        overflow-y: auto;
       }
     }
   }

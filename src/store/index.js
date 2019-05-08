@@ -6,7 +6,7 @@ import * as actions from './actions';
 import * as mutations from './mutations';
 
 const state = {
-  username: '',
+  username: 'Player 1',
   points: 0,
   match: null,
   attempts: [],

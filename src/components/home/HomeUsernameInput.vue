@@ -5,6 +5,7 @@
         type="text"
         class="username-input input is-large"
         placeholder="Insert username..."
+        :value="username"
         @keyup="onChange"
       >
     </div>
@@ -12,11 +13,18 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
+  computed: {
+    ...mapGetters([
+      'username',
+    ]),
+  },
   methods: {
-    ...mapActions(['setUsername']),
+    ...mapActions([
+      'setUsername',
+    ]),
     onChange(event) {
       this.setUsername(event.target.value);
     },

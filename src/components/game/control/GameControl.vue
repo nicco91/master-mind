@@ -1,7 +1,15 @@
 <template>
   <div class="game-control">
-    <GameDisplay :attempt="attempt"></GameDisplay>
-    <GameControlDigits @selected="onSelected"></GameControlDigits>
+    <GameDisplay
+      :attempt="attempt"
+      :hoverable="true"
+      @clicked="onRemove"
+    ></GameDisplay>
+    
+    <GameControlDigits
+      @selected="onSelected"
+    ></GameControlDigits>
+    
     <GameControlButtons
       :enabled="validAttempt"
       @try="onTry()"
@@ -40,6 +48,9 @@ export default {
       if (this.attempt.length < 3) {
         this.attempt.push(value);
       }
+    },
+    onRemove(index) {
+      this.attempt.splice(index, 1);
     },
     onTry() {
       if (this.validAttempt) {

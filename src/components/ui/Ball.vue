@@ -1,5 +1,5 @@
 <template>
-  <div :class="`ball ball--${color}`">
+  <div :class="`ball ${colorClass} ${hoverableClass}`">
     <span class="is-size-5">{{ valueLabel }}</span>
   </div>
 </template>
@@ -13,10 +13,20 @@ export default {
       type: Number,
       required: false,
     },
+    hoverable: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     color() {
-      return this.value != null ? colorMapping[this.value] : 'unknown';
+      return this.value != null ? colorMapping[this.value] : null;
+    },
+    colorClass() {
+      return this.color ? `ball--${this.color}` : '';
+    },
+    hoverableClass() {
+      return this.hoverable ? 'ball--hoverable' : '';
     },
     valueLabel() {
       return this.value != null ? this.value : '?';
@@ -36,6 +46,16 @@ export default {
   border-radius: 100%;
   text-align: center;
   color: $white;
+  transition: transform 200ms ease-out;
+
+  &--hoverable {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+      transition: transform 200ms ease-out;
+    }
+  }
 
   &--black {
     background-color: $black;
