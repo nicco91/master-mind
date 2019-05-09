@@ -47,6 +47,7 @@ export default {
   text-align: center;
   color: $white;
   transition: transform 200ms ease-out;
+  user-select: none;
 
   &--hoverable {
     cursor: pointer;

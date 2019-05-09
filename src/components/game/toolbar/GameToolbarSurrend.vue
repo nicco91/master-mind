@@ -1,5 +1,5 @@
 <template>
-  <div class="game-toolbar-surrend">
+  <div class="game-toolbar-surrend navbar-item">
     <button type="button" class="button is-danger" @click="onAskSurrend()">
       Surrend
     </button>

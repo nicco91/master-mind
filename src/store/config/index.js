@@ -4,9 +4,14 @@ import * as mutations from './mutations';
 
 const state = {
   secretLength: 3,
+  minSecretLength: 3,
+  maxSecretLength: 6,
   symbols: 10,
+  minSymbols: 5,
+  maxSymbols: 10,
   attemptsLimit: false,
-  attempts: 20,
+  attempts: 10,
+  minAttempts: 1,
 };
 
 export default {

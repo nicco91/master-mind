@@ -1,9 +1,11 @@
 <template>
-  <Modal :show="winner || surrender" :preventClose="true">
-    <div :class="`game-ended ${typeClass}`">
+  <Modal :show="winner || surrender || loser" :preventClose="true">
+    <div :class="`game-ended game-ended--${typeClass}`">
       <div :class="`game-ended__icon animated ${animationClass}`"></div>
       <h1 class="game-ended__title title is-1">
-        You {{ winner ? 'won' : 'surrended' }}!
+        <span v-if="winner">You won!</span>
+        <span v-if="surrender">You surrended!</span>
+        <span v-if="loser">You lose!</span>
       </h1>
       <p class="game-ended__body is-size-5">
         <span v-if="winner">
@@ -12,9 +14,12 @@
         <span v-if="surrender">
           Oh, no! You weren't able to guess the secret code in
         </span>
-        <strong>{{ attemptsCount }} attempt(s)</strong>.
+        <span v-if="loser">
+          Oh, no! You're out of attempts...
+        </span>
+        <strong v-if="!loser">{{ attemptsCount }} attempt(s)</strong>.
       </p>
-      <div class="game-ended__secret-code" v-if="surrender">
+      <div class="game-ended__secret-code" v-if="surrender || loser">
         <p>Here is your secret code:</p>
         <GameDisplay :attempt="match"></GameDisplay>
       </div>
@@ -42,14 +47,33 @@ export default {
     ...mapGetters('game', [
       'winner',
       'surrender',
+      'loser',
       'attempts',
       'match',
     ]),
     typeClass() {
-      return `game-ended--${this.winner ? 'winner' : 'surrender'}`;
+      if (this.winner) {
+        return 'winner';
+      }
+      if (this.surrender) {
+        return 'surrender';
+      }
+      if (this.loser) {
+        return 'loser';
+      }
+      return '';
     },
     animationClass() {
-      return this.winner ? 'tada' : 'fadeInDown';
+      if (this.winner) {
+        return 'tada';
+      }
+      if (this.surrender) {
+        return 'fadeInDown';
+      }
+      if (this.loser) {
+        return 'flash';
+      }
+      return '';
     },
     attemptsCount() {
       return this.attempts.length;
@@ -82,6 +106,9 @@ export default {
     }
     .game-ended--surrender & {
       background-image: url('../../assets/sad.svg');
+    }
+    .game-ended--loser & {
+      background-image: url('../../assets/game-over.svg');
     }
   }
 

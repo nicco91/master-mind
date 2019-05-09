@@ -32,7 +32,6 @@ export default {
 .game-attempt-item {
   display: flex;
   padding: .75rem 15px;
-  border-bottom: 1px solid #eee;
   align-items: center;
 
   .game-attempt-result {

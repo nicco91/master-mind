@@ -6,15 +6,24 @@ export const setPoints = ({ commit }, value) => {
   commit('setPoints', points);
 };
 
-export const generateMatch = ({ commit }) => {
-  const match = [0, 0, 0].map(() => parseInt(Math.random() * 9, 10));
+export const generateMatch = ({ commit, rootState }) => {
+  const match = [];
+  const symbols = rootState.config.symbols - 1;
+  for (let i = 0; i < rootState.config.secretLength; i += 1) {
+    match.push(parseInt(Math.random() * symbols, 10));
+  }
   commit('initMatch', match);
 };
 
-export const tryAttempt = ({ commit, state, rootState }, attempt) => {
+// eslint-disable-next-line object-curly-newline
+export const tryAttempt = ({ commit, state, getters, rootState }, attempt) => {
   const { secretLength } = rootState.config;
-  const checkMatch = (new Array(secretLength)).map(() => true);
-  const checkAttempt = (new Array(secretLength)).map(() => true);
+  const checkMatch = [];
+  const checkAttempt = [];
+  for (let i = 0; i < secretLength; i += 1) {
+    checkAttempt.push(true);
+    checkMatch.push(true);
+  }
   // count right numbers in right place
   const rightPlace = attempt.reduce((acc, digit, index) => {
     let increment = 0;
@@ -25,6 +34,7 @@ export const tryAttempt = ({ commit, state, rootState }, attempt) => {
     }
     return acc + increment;
   }, 0);
+
   // count right numbers in wrong place
   const wrongPlace = attempt.reduce((acc, attemptDigit, i) => {
     let j = 0;
@@ -45,10 +55,19 @@ export const tryAttempt = ({ commit, state, rootState }, attempt) => {
   if (rightPlace === secretLength) {
     commit('setWinner');
   }
+
+  const enabledAttempts = rootState.config.attemptsLimit;
+  if (enabledAttempts && getters.remainingAttempts === 0 && !getters.winner) {
+    commit('setLoser');
+  }
 };
 
 export const surrend = ({ commit }) => {
   commit('setSurrender');
+};
+
+export const lose = ({ commit }) => {
+  commit('setLoser');
 };
 
 export const resetMatch = ({ commit }) => {

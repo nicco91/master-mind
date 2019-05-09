@@ -2,14 +2,11 @@
   <nav class="navbar is-spaced">
     <div class="container">
       <div class="navbar-start">
-        <div class="navbar-item">
-          <GameToolbarPlayer :username="username"></GameToolbarPlayer>
-        </div>
+        <GameToolbarPlayer :username="username" />
       </div>
       <div class="navbar-end">
-        <div class="navbar-item">
-          <GameToolbarSurrend @surrend="onSurrend()"></GameToolbarSurrend>
-        </div>
+        <GameToolbarAttempts v-if="attemptsLimit" />
+        <GameToolbarSurrend @surrend="onSurrend()" />
       </div>
     </div>
   </nav>
@@ -18,16 +15,21 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import GameToolbarSurrend from './GameToolbarSurrend.vue';
+import GameToolbarAttempts from './GameToolbarAttempts.vue';
 import GameToolbarPlayer from './GameToolbarPlayer.vue';
 
 export default {
   components: {
     GameToolbarSurrend,
+    GameToolbarAttempts,
     GameToolbarPlayer,
   },
   computed: {
     ...mapGetters('game', [
       'username',
+    ]),
+    ...mapGetters('config', [
+      'attemptsLimit',
     ]),
   },
   methods: {

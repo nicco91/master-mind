@@ -1,5 +1,7 @@
 <template>
-  <span class="title is-4">Player: {{ username }}</span>
+  <div class="navbar-item">
+    <span class="title is-4">Player: {{ username }}</span>
+  </div>
 </template>
 
 <script>

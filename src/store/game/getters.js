@@ -6,3 +6,7 @@ export const attempts = state => state.attempts;
 export const sortedAttempts = state => [...state.attempts].reverse();
 export const winner = state => state.winner;
 export const surrender = state => state.surrender;
+export const loser = state => state.loser;
+export const remainingAttempts = (state, getters, rootState) => (
+  rootState.config.attempts - state.attempts.length
+);

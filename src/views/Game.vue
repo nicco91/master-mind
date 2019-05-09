@@ -3,7 +3,8 @@
     <GameToolbar></GameToolbar>
     <div class="container">
       <GameControl></GameControl>
-      <h1 class="attempts-title title is-5">Attempts</h1>
+      <!-- <h1 class="attempts-title title is-5">Attempts</h1> -->
+      <hr>
       <GameAttemptList></GameAttemptList>
     </div>
     <GameEnded></GameEnded>

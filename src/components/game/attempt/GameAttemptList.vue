@@ -41,5 +41,11 @@ export default {
     overflow: visible;
     padding: 16px;
   }
+
+  .game-attempt-item {
+    &:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+  }
 }
 </style>

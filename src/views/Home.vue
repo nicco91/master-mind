@@ -3,18 +3,23 @@
     <div class="home__icon"></div>
     <h1 class="home__title title">Mastermind</h1>
     <HomeUsernameInput></HomeUsernameInput>
-    <HomePlayButton></HomePlayButton>
+    <div class="buttons">
+      <HomePlayButton></HomePlayButton>
+      <HomeConfigButton></HomeConfigButton>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import HomePlayButton from '@/components/home/HomePlayButton.vue';
+import HomeConfigButton from '@/components/home/HomeConfigButton.vue';
 import HomeUsernameInput from '@/components/home/HomeUsernameInput.vue';
 
 export default {
   components: {
     HomePlayButton,
+    HomeConfigButton,
     HomeUsernameInput,
   },
   methods: {
@@ -88,7 +93,8 @@ export default {
   }
 }
 
-.play-button {
+.buttons {
   margin-top: 2rem;
+  justify-content: center;
 }
 </style>

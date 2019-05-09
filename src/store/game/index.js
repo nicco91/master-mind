@@ -9,6 +9,7 @@ const state = {
   attempts: [],
   winner: false,
   surrender: false,
+  loser: false,
 };
 
 export default {

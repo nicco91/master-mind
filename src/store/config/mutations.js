@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 export const setSecretLength = (state, value) => {
-  state.setSecretLength = value;
+  state.secretLength = value;
 };
 
 export const setSymbols = (state, value) => {

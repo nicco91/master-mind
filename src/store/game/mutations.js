@@ -24,10 +24,15 @@ export const setSurrender = (state) => {
   state.surrender = true;
 };
 
+export const setLoser = (state) => {
+  state.loser = true;
+};
+
 export const resetMatch = (state) => {
   state.match = null;
   state.points = 0;
   state.attempts = [];
   state.winner = false;
   state.surrender = false;
+  state.loser = false;
 };

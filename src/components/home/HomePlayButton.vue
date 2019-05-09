@@ -4,13 +4,19 @@
     class="play-button button is-primary is-large"
     :disabled="invalidUsername"
     @click="onPlay()"
-  >Play</button>
+  >
+    <PlayIcon :size="32" /> Play
+  </button>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import PlayIcon from 'vue-material-design-icons/Play.vue';
 
 export default {
+  components: {
+    PlayIcon,
+  },
   props: {
     disabled: {
       type: Boolean,
