@@ -69,17 +69,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .game-control {
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
+@import '~bulma/sass/utilities/_all.sass';
 
-    &-digits {
-      margin-left: auto;
+.game-control {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+
+  @include mobile() {
+    flex-direction: column;
+    justify-content: center;
+
+    .game-control-buttons {
+      margin-left: 0;
+      margin-top: 16px;
     }
-
-    &-buttons {
-      margin-left: auto;
+    .game-control-digits {
+      margin-top: 16px;
     }
   }
+
+  &-digits {
+    margin-left: auto;
+  }
+
+  &-buttons {
+    margin-left: auto;
+  }
+}
 </style>

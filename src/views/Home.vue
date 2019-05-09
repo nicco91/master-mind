@@ -54,6 +54,10 @@ export default {
     font-family: 'Bungee Shade', sans-serif;
     font-size: 3rem;
     animation: colors infinite 20s;
+
+    @include mobile() {
+      font-size: 2rem;
+    }
   }
 
   @keyframes colors {

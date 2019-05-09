@@ -16,7 +16,7 @@ import { mapGetters } from 'vuex';
 import GameToolbar from '@/components/game/toolbar/GameToolbar.vue';
 import GameControl from '@/components/game/control/GameControl.vue';
 import GameAttemptList from '@/components/game/attempt/GameAttemptList.vue';
-import GameEnded from '@/components/game/GameEnded.vue';
+import GameEnded from '@/components/game/ended/GameEnded.vue';
 
 export default {
   components: {

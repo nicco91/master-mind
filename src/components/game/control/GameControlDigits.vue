@@ -33,12 +33,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~bulma/sass/utilities/_all.sass';
+
 .game-control-digits {
+  @include mobile() {
+    text-align: center;
+  }
+
   &__ball {
     display: inline-block;
 
     &:not(:last-child) {
       margin-right: 1rem;
+
+      @include mobile() {
+        margin-bottom: 1rem;
+      }
     }
   }
 }

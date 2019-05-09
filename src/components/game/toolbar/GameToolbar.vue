@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar is-spaced">
-    <div class="container">
+    <div :class="`container ${!attemptsLimit ? 'centered' : ''}`">
       <div class="navbar-start">
         <GameToolbarPlayer :username="username" />
       </div>
@@ -48,5 +48,36 @@ export default {
 
 .navbar {
   border-bottom: 1px solid $grey-lighter;
+}
+
+.game-toolbar {
+  &__surrend {
+    &.centered {
+      margin: 0 auto;
+    }
+  }
+}
+
+.container {
+  @include mobile() {
+    .navbar-start {
+      text-align: center;
+    }
+
+    .navbar-end {
+      display: flex;
+      align-items: center;
+
+      .game-toolbar-surrend {
+        margin-left: auto;
+      }
+    }
+
+    &.centered {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
 }
 </style>
