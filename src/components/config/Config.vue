@@ -1,5 +1,6 @@
 <template>
   <div class="config">
+    <h1 class="title is-1">Settings</h1>
     <ConfigSelect
       :initialValue="secretLength"
       :minValue="minSecretLength"
@@ -114,8 +115,8 @@ export default {
     }
 
     .buttons {
-      justify-content: end;
-      margin-top: 32px;
+      justify-content: center;
+      margin-top: 2.5rem;
     }
   }
 </style>

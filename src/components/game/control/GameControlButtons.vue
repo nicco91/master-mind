@@ -2,24 +2,33 @@
   <div class="game-control-buttons buttons has-addons">
     <button
       type="button"
-      class="game-control-try button is-primary"
+      class="game-control-try button is-primary is-medium"
       @click="onTry()"
       :disabled="!enabled"
     >
+      <SendIcon />
       Try
     </button>
     <button
       type="button"
-      class="game-control-try button"
+      class="game-control-try button is-medium"
       @click="onReset()"
     >
+      <SyncIcon />
       Reset
     </button>
   </div>
 </template>
 
 <script>
+import SendIcon from 'vue-material-design-icons/Send.vue';
+import SyncIcon from 'vue-material-design-icons/Sync.vue';
+
 export default {
+  components: {
+    SendIcon,
+    SyncIcon,
+  },
   props: {
     enabled: {
       type: Boolean,

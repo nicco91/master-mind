@@ -1,6 +1,7 @@
 <template>
   <div class="game-toolbar-surrend navbar-item">
-    <button type="button" class="button is-danger" @click="onAskSurrend()">
+    <button type="button" class="button is-danger is-medium" @click="onAskSurrend()">
+      <FlagVariantOutlineIcon />
       Surrend
     </button>
 
@@ -16,11 +17,13 @@
 </template>
 
 <script>
+import FlagVariantOutlineIcon from 'vue-material-design-icons/FlagVariantOutline.vue';
 import Modal from '@/components/ui/Modal.vue';
 
 export default {
   components: {
     Modal,
+    FlagVariantOutlineIcon,
   },
   data() {
     return {
