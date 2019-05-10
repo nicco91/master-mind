@@ -1,6 +1,6 @@
 <template>
   <div class="game-toolbar-surrend navbar-item">
-    <button type="button" class="button is-danger is-medium" @click="onAskSurrend()">
+    <button type="button" class="button is-danger" @click="onAskSurrend()">
       <FlagVariantOutlineIcon />
       Surrend
     </button>

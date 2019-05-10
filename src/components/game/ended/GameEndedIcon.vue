@@ -1,9 +1,17 @@
 <template>
-  <div :class="`game-ended-icon ${typeClass} animated ${animationClass}`"></div>
+  <div
+    :class="`game-ended-icon ${typeClass}`"
+    v-animate="animationClass"
+  ></div>
 </template>
 
 <script>
+import Animate from '@/directives/AnimateDirective';
+
 export default {
+  directives: {
+    Animate,
+  },
   props: {
     type: {
       type: String,

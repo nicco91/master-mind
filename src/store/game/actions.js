@@ -16,7 +16,7 @@ export const generateMatch = ({ commit, rootState }) => {
 };
 
 // eslint-disable-next-line object-curly-newline
-export const tryAttempt = ({ commit, state, getters, rootState }, attempt) => {
+export const tryAttempt = ({ commit, state, getters, rootState, dispatch }, attempt) => {
   const { secretLength } = rootState.config;
   const checkMatch = [];
   const checkAttempt = [];
@@ -54,6 +54,7 @@ export const tryAttempt = ({ commit, state, getters, rootState }, attempt) => {
 
   if (rightPlace === secretLength) {
     commit('setWinner');
+    dispatch('ranking/updateRanking', null, { root: true });
   }
 
   const enabledAttempts = rootState.config.attemptsLimit;

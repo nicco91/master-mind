@@ -1,8 +1,8 @@
 <template>
-  <div class="game-control-buttons buttons has-addons">
+  <div class="game-control-buttons buttons">
     <button
       type="button"
-      class="game-control-try button is-primary is-medium"
+      class="game-control-buttons__try button is-primary is-medium"
       @click="onTry()"
       :disabled="!enabled"
     >
@@ -11,10 +11,10 @@
     </button>
     <button
       type="button"
-      class="game-control-try button is-medium"
+      class="game-control-buttons__reset button is-small"
       @click="onReset()"
     >
-      <SyncIcon />
+      <SyncIcon :size="18" />
       Reset
     </button>
   </div>

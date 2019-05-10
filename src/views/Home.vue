@@ -4,6 +4,7 @@
     <h1 class="home__title title">Mastermind</h1>
     <HomeUsernameInput></HomeUsernameInput>
     <div class="buttons">
+      <HomeRankingButton></HomeRankingButton>
       <HomePlayButton></HomePlayButton>
       <HomeConfigButton></HomeConfigButton>
     </div>
@@ -14,12 +15,14 @@
 import { mapActions } from 'vuex';
 import HomePlayButton from '@/components/home/HomePlayButton.vue';
 import HomeConfigButton from '@/components/home/HomeConfigButton.vue';
+import HomeRankingButton from '@/components/home/HomeRankingButton.vue';
 import HomeUsernameInput from '@/components/home/HomeUsernameInput.vue';
 
 export default {
   components: {
     HomePlayButton,
     HomeConfigButton,
+    HomeRankingButton,
     HomeUsernameInput,
   },
   methods: {

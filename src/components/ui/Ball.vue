@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import colorMapping from '@/data/color-mapping';
+import colorMapping from '@/helpers/colorMapping';
 
 export default {
   props: {
