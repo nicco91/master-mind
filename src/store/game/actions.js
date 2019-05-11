@@ -15,32 +15,24 @@ export const generateMatch = ({ commit, rootState }) => {
   commit('initMatch', match);
 };
 
-// eslint-disable-next-line object-curly-newline
-export const tryAttempt = ({ commit, state, getters, rootState, dispatch }, attempt) => {
-  const { secretLength } = rootState.config;
-  const checkMatch = [];
-  const checkAttempt = [];
-  for (let i = 0; i < secretLength; i += 1) {
-    checkAttempt.push(true);
-    checkMatch.push(true);
-  }
-  // count right numbers in right place
-  const rightPlace = attempt.reduce((acc, digit, index) => {
+function calcRightPlace(attempt, match, checkMatch, checkAttempt) {
+  return attempt.reduce((acc, digit, index) => {
     let increment = 0;
-    if (state.match[index] === digit) {
+    if (match[index] === digit) {
       increment = 1;
       checkMatch[index] = false;
       checkAttempt[index] = false;
     }
     return acc + increment;
   }, 0);
+}
 
-  // count right numbers in wrong place
-  const wrongPlace = attempt.reduce((acc, attemptDigit, i) => {
+function calcWrongPlace(attempt, match, secretLength, checkMatch, checkAttempt) {
+  return attempt.reduce((acc, attemptDigit, i) => {
     let j = 0;
     let increment = 0;
     while (j < secretLength && checkAttempt[i]) {
-      if (checkMatch[j] && state.match[j] === attemptDigit) {
+      if (checkMatch[j] && match[j] === attemptDigit) {
         increment += 1;
         checkMatch[j] = false;
         checkAttempt[i] = false;
@@ -49,17 +41,34 @@ export const tryAttempt = ({ commit, state, getters, rootState, dispatch }, atte
     }
     return acc + increment;
   }, 0);
+}
 
-  commit('addAttempt', { attempt, rightPlace, wrongPlace });
+function initCheckArray(secretLength) {
+  const checkArray = [];
+  for (let i = 0; i < secretLength; i += 1) {
+    checkArray.push(true);
+  }
+  return checkArray;
+}
+
+export const tryAttempt = (context, attempt) => {
+  const { secretLength, attemptsLimit } = context.rootState.config;
+  const { match } = context.state;
+  const checkMatch = initCheckArray(secretLength);
+  const checkAttempt = initCheckArray(secretLength);
+  const rightPlace = calcRightPlace(attempt, match, checkMatch, checkAttempt);
+  const wrongPlace = calcWrongPlace(attempt, match, secretLength, checkMatch, checkAttempt);
+
+  context.commit('addAttempt', { attempt, rightPlace, wrongPlace });
 
   if (rightPlace === secretLength) {
-    commit('setWinner');
-    dispatch('ranking/updateRanking', null, { root: true });
+    context.commit('setWinner');
+    context.dispatch('ranking/updateRanking', null, { root: true });
   }
 
-  const enabledAttempts = rootState.config.attemptsLimit;
-  if (enabledAttempts && getters.remainingAttempts === 0 && !getters.winner) {
-    commit('setLoser');
+  const hasAttempts = context.getters.remainingAttempts === 0;
+  if (attemptsLimit && hasAttempts && !context.getters.winner) {
+    context.commit('setLoser');
   }
 };
 
